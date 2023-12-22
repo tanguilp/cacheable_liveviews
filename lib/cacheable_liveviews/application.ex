@@ -9,8 +9,9 @@ defmodule CacheableLiveviews.Application do
   def start(_type, _args) do
     children = [
       CacheableLiveviewsWeb.Telemetry,
-      #CacheableLiveviews.Repo,
-      {DNSCluster, query: Application.get_env(:cacheable_liveviews, :dns_cluster_query) || :ignore},
+      # CacheableLiveviews.Repo,
+      {DNSCluster,
+       query: Application.get_env(:cacheable_liveviews, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: CacheableLiveviews.PubSub},
       # Start a worker by calling: CacheableLiveviews.Worker.start_link(arg)
       # {CacheableLiveviews.Worker, arg},
