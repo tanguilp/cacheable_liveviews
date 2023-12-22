@@ -6,7 +6,6 @@ defmodule CacheableLiveviewsWeb.Router do
     plug :fetch_session
     plug :fetch_live_flash
     plug :put_root_layout, html: {CacheableLiveviewsWeb.Layouts, :root}
-    plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
 
