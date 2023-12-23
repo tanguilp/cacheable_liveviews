@@ -32,6 +32,7 @@ defmodule CacheableLiveviews.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 3.0"},
       {:phoenix,
        github: "tanguilp/phoenix", branch: "origin-only-for-lv-session-sec-check", override: true},
       {:phoenix_ecto, "~> 4.4"},
@@ -50,7 +51,9 @@ defmodule CacheableLiveviews.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:swoosh, "~> 1.4"},
+      {:hackney, "~> 1.20"}
     ]
   end
 
