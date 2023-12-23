@@ -64,7 +64,7 @@ defmodule CacheableLiveviewsWeb.Router do
   scope "/", CacheableLiveviewsWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    get "/userhome", PageController, :userhome
+    get "/users/home", PageController, :userhome
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
@@ -101,6 +101,7 @@ defmodule CacheableLiveviewsWeb.Router do
 
     live_session :require_authenticated_admin,
       on_mount: [{CacheableLiveviewsWeb.AdminAuth, :ensure_authenticated}] do
+      live "/admins/home", AdminHomeLive, :adminshome
       live "/admins/settings", AdminSettingsLive, :edit
       live "/admins/settings/confirm_email/:token", AdminSettingsLive, :confirm_email
     end

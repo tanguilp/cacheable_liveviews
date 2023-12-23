@@ -12,10 +12,20 @@
   </head>
   <body class="bg-white antialiased">
     <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
+      <li>
+        <.link
+          href={~p"/admins/home"}
+          class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+        >
+          Admins Live Home
+        </.link>
+      </li>
+
       <%= if @current_admin do %>
         <li class="text-[0.8125rem] leading-6 text-zinc-900">
           <%= @current_admin.email %>
         </li>
+
         <li>
           <.link
             href={~p"/admins/settings"}
@@ -53,18 +63,20 @@
       <% end %>
     </ul>
     <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
+      <li>
+        <.link
+          href={~p"/users/home"}
+          class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+        >
+          Users Home
+        </.link>
+      </li>
+
       <%= if @current_user do %>
         <li class="text-[0.8125rem] leading-6 text-zinc-900">
           <%= @current_user.email %>
         </li>
-        <li>
-          <.link
-            href={~p"/userhome"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Users Home
-          </.link>
-        </li>
+
         <li>
           <.link
             href={~p"/users/settings"}
