@@ -9,7 +9,7 @@ defmodule CacheableLiveviews.Application do
   def start(_type, _args) do
     children = [
       CacheableLiveviewsWeb.Telemetry,
-      # CacheableLiveviews.Repo,
+      CacheableLiveviews.Repo,
       {DNSCluster,
        query: Application.get_env(:cacheable_liveviews, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: CacheableLiveviews.PubSub},
