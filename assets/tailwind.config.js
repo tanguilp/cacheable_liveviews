@@ -14,9 +14,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: "#FD4F00",
+        brand: "#954ffd",
       }
     },
+    fontFamily: {caveat: ["caveat"]}
   },
   plugins: [
     require("@tailwindcss/forms"),

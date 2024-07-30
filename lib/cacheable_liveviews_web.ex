@@ -85,6 +85,7 @@ defmodule CacheableLiveviewsWeb do
       import Phoenix.HTML
       # Core UI components and translation
       import CacheableLiveviewsWeb.CoreComponents
+      import CacheableLiveviewsWeb.DataComponents
       import CacheableLiveviewsWeb.Gettext
 
       # Shortcut for generating JS commands

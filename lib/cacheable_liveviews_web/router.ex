@@ -16,7 +16,9 @@ defmodule CacheableLiveviewsWeb.Router do
   scope "/", CacheableLiveviewsWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live_session :default do
+      live "/", MainLive.Index
+    end
   end
 
   # Other scopes may use custom stacks.

@@ -3,3 +3,10 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+
+@font-face {
+  font-family: 'caveat';
+  src: url('/fonts/caveat.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
