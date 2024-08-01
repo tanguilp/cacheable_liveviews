@@ -1,10 +1,27 @@
 <header class="relative top-0 right-0 left-0 p-1 bg-gray-100">
   <p class="absolute left-0 top-1"><Heroicons.bars_3 class="w-8 h-8 text-gray-500" /></p>
   <p class="font-caveat text-2xl font-bold text-center text-brand">MyShop</p>
-  <p class="absolute right-1 top-1 flex">
-    <Heroicons.shopping_cart class="w-8 h-8 text-gray-500" />
-    <Heroicons.user class="w-8 h-8 text-gray-500" />
-  </p>
+  <div class="absolute right-1 top-1 flex">
+    <div class="relative">
+      <Heroicons.shopping_cart class="w-8 h-8 text-gray-500" />
+      <p
+        :if={@user_id}
+        class="absolute top-0 right-0 rounded-xl bg-brand text-white font-bold px-1 leading-none"
+      >
+        3
+      </p>
+    </div>
+    <div>
+      <Heroicons.user :if={@user_id} class="w-8 h-8 text-gray-500" />
+      <Heroicons.arrow_right_end_on_rectangle :if={!@user_id} class="w-8 h-8 text-gray-500" />
+      <p
+        :if={@user_id}
+        class="absolute top-0 right-0 rounded-xl bg-brand text-white font-bold px-1 leading-none"
+      >
+        1
+      </p>
+    </div>
+  </div>
 </header>
 <main class="p-1">
   <div class="mx-auto max-w-2xl">

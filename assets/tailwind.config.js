@@ -15,6 +15,16 @@ module.exports = {
     extend: {
       colors: {
         brand: "#954ffd",
+      },
+      keyframes: {
+        wiggle: {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1,1.5)', opacity: 0},
+          '100%': { transform: 'scale(1,2)', opacity: 0},
+        }
+      },
+      animation: {
+        wiggle: 'wiggle 0.5s linear 1 forwards',
       }
     },
     fontFamily: {caveat: ["caveat"]}

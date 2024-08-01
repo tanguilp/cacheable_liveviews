@@ -1,6 +1,8 @@
 defmodule CacheableLiveviewsWeb.DataComponents do
   use Phoenix.Component
 
+  alias Phoenix.LiveView.JS
+
   attr :product, :any, required: true
 
   def product_card(assigns) do
@@ -10,7 +12,13 @@ defmodule CacheableLiveviewsWeb.DataComponents do
         <img src={"/images/#{@product.img_url}"} class="max-h-full max-w-full" />
       </div>
       <div>
-        <p class="text-brand font-semibold text-lg"><%= to_string(@product.price) %></p>
+        <p
+          class="text-brand font-semibold text-lg"
+          id={"price-#{@product.id}"}
+          data-wiggle={animate_wiggle("#price-#{@product.id}")}
+        >
+          <%= to_string(@product.price) %>
+        </p>
         <p class="overflow-hidden whitespace-nowrap text-ellipsis text-zinc-600 font-semibold">
           <%= @product.name %>
         </p>
@@ -21,5 +29,9 @@ defmodule CacheableLiveviewsWeb.DataComponents do
       </p>
     </div>
     """
+  end
+
+  def animate_wiggle(element_id) do
+    JS.transition(%JS{}, "animate-wiggle", to: element_id, time: 200)
   end
 end
