@@ -35,3 +35,4 @@ cacheable_liveviews-*.tar
 npm-debug.log
 /assets/node_modules/
 
+*.sw*
