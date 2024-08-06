@@ -19,7 +19,7 @@ defmodule CacheableLiveviews.MixProject do
   def application do
     [
       mod: {CacheableLiveviews.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :wx, :observer]
     ]
   end
 
@@ -32,7 +32,8 @@ defmodule CacheableLiveviews.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, path: "../phoenix", override: true},
+      {:phoenix,
+       github: "tanguilp/phoenix", branch: "feat-socket-optionnal-csrf-check", override: true},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
