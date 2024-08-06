@@ -21,7 +21,7 @@ config :cacheable_liveviews, CacheableLiveviewsWeb.Endpoint,
   ],
   pubsub_server: CacheableLiveviews.PubSub,
   live_view: [signing_salt: "eAd7AobA"],
-  cswsh_check: :origin
+  socket_check_csrf: false
 
 # Configure esbuild (the version is required)
 config :esbuild,
