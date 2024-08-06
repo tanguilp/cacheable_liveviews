@@ -1,6 +1,8 @@
 defmodule CacheableLiveviewsWeb.Router do
   use CacheableLiveviewsWeb, :router
 
+  @caching_opts %{store: :http_cache_store_memory}
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,6 +10,11 @@ defmodule CacheableLiveviewsWeb.Router do
     plug :protect_from_forgery
     plug :put_root_layout, html: {CacheableLiveviewsWeb.Layouts, :root}
     plug :put_secure_browser_headers
+  end
+
+  pipeline :caching do
+    plug PlugHTTPCache, @caching_opts
+    plug CacheableLiveviewsWeb.Plug.CacheLiveviewResponse, 60 * 60 * 6
   end
 
   pipeline :api do
@@ -20,6 +27,8 @@ defmodule CacheableLiveviewsWeb.Router do
     get "/login", LoginController, :login
 
     live_session :default do
+      pipe_through :caching
+
       live "/", MainLive.Index
     end
   end

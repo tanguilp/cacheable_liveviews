@@ -50,7 +50,11 @@ defmodule CacheableLiveviews.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:plug_cowboy, "~> 2.5"},
       {:heroicons, "~> 0.5.5"},
-      {:ex_money, "~> 5.0"}
+      {:ex_money, "~> 5.0"},
+      {:http_cache, "~> 0.3.0"},
+      {:plug_http_cache, "~> 0.3.0"},
+      {:http_cache_store_memory, "~> 0.3.0"},
+      {:plug_cache_control, "~> 1.0"}
     ]
   end
 
