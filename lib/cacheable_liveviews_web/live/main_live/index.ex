@@ -3,7 +3,7 @@ defmodule CacheableLiveviewsWeb.MainLive.Index do
 
   import Money.Sigil
 
-  alias CacheableLiveviews.Product
+  alias CacheableLiveviews.{Product, User}
 
   @impl true
   def mount(_params, session, socket) do
@@ -15,9 +15,13 @@ defmodule CacheableLiveviewsWeb.MainLive.Index do
       |> assign(:user_id, nil)
 
     if not connected?(socket) do
-      dead_mount(socket)
+      socket
+      |> assign(:deadmount, true)
+      |> dead_mount()
     else
-      live_mount(session, socket)
+      socket
+      |> assign(:deadmount, false)
+      |> live_mount(session)
     end
   end
 
@@ -37,20 +41,21 @@ defmodule CacheableLiveviewsWeb.MainLive.Index do
     {:ok, socket}
   end
 
-  defp live_mount(params, socket) do
+  defp live_mount(socket, session) do
     Process.send_after(self(), :change_price_live, 2_000)
 
-    {:ok, user_assign(params, socket)}
+    {:ok, user_assign(socket, session)}
   end
 
-  defp user_assign(%{"user_id" => user_id}, socket) do
+  defp user_assign(socket, %{"user_id" => user_id}) do
     # User is logged in
     socket
+    |> assign(:user_id, user_id)
     |> assign(:nb_items_in_cart, User.items_in_cart(user_id) |> length())
     |> assign(:nb_notifications, User.list_notifications(user_id) |> length())
   end
 
-  defp user_assign(_, socket) do
+  defp user_assign(socket, _) do
     socket
   end
 end

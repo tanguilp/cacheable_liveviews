@@ -32,15 +32,13 @@ defmodule CacheableLiveviews.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix,
-       github: "tanguilp/phoenix", branch: "origin-only-for-lv-session-sec-check", override: true},
+      {:phoenix, "~> 1.7.0"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 3.3"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view,
-       github: "tanguilp/phoenix_live_view", branch: "allow-nil-session", override: true},
+      {:phoenix_live_view, "~> 0.20"},
       {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.2"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
