@@ -22,7 +22,7 @@ import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 
-let liveSocket = new LiveSocket("/live", Socket, {})
+let liveSocket = new LiveSocket("/live", Socket, {params: {}})
 
 window.addEventListener(`phx:wiggle`, (e) => {
   let el = document.getElementById(e.detail.id)
