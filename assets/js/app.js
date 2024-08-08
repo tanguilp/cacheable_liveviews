@@ -22,12 +22,7 @@ import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 
-let params = {}
-if (document.querySelector("meta[name='csrf-token']")) {
-  params = {_csrf_token: document.querySelector("meta[name='csrf-token']").getAttribute("content")}
-}
-
-let liveSocket = new LiveSocket("/live", Socket, {params: params})
+let liveSocket = new LiveSocket("/live", Socket, {})
 
 window.addEventListener(`phx:wiggle`, (e) => {
   let el = document.getElementById(e.detail.id)
