@@ -12,8 +12,12 @@ defmodule CacheableLiveviewsWeb.Plug.CacheLiveviewResponse do
   end
 
   defp set_cache_control_header(duration_second) do
-    fn conn ->
-      PlugCacheControl.Helpers.put_cache_control(conn, [:public, s_maxage: duration_second])
+    fn
+      %Plug.Conn{private: %{cache: true}} = conn ->
+        PlugCacheControl.Helpers.put_cache_control(conn, [:public, s_maxage: duration_second])
+
+      conn ->
+        conn
     end
   end
 end

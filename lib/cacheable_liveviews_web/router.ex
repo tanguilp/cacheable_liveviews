@@ -29,7 +29,7 @@ defmodule CacheableLiveviewsWeb.Router do
     live_session :default do
       pipe_through :caching
 
-      live "/", MainLive.Index
+      live "/", MainLive.Index, private: %{cache: true}
     end
   end
 
