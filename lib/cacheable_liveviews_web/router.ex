@@ -9,6 +9,7 @@ defmodule CacheableLiveviewsWeb.Router do
     plug :fetch_live_flash
     plug :put_root_layout, html: {CacheableLiveviewsWeb.Layouts, :root}
     plug :put_secure_browser_headers
+    plug CacheableLiveviewsWeb.Plug.SetASessionNoMatterWhat
   end
 
   pipeline :caching do
