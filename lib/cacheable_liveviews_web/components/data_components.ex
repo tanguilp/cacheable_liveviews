@@ -7,7 +7,7 @@ defmodule CacheableLiveviewsWeb.DataComponents do
 
   def product_card(assigns) do
     ~H"""
-    <div class="relative my-1">
+    <div id={"product-#{@product.id}"} class="relative my-1">
       <div class="aspect-square border rounded-xl flex justify-center">
         <img src={"/images/#{@product.img_url}"} class="max-h-full max-w-full" />
       </div>

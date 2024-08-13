@@ -1,3 +1,20 @@
+<div class="mb-5">
+  <div class="text-right">
+    <span
+      :if={not @nb_total_products.ok?}
+      class="bg-slate-200 rounded min-w-40 text-transparent animate-pulse"
+    >
+      See all 1234 products »
+    </span>
+    <.link
+      :if={@nb_total_products.ok?}
+      href="http://perdu.com"
+      class="underline text-brand text-blue-400"
+    >
+      See all <%= @nb_total_products.result %> products »
+    </.link>
+  </div>
+</div>
 <div class="m-2">
   <div class="grid grid-cols-2 gap-2">
     <.product_card :for={product <- @top_products} product={product} />

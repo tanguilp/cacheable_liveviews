@@ -53,4 +53,10 @@ defmodule CacheableLiveviews.Product do
       }
     ]
   end
+
+  def count_products() do
+    :timer.sleep(2_500)
+
+    1327
+  end
 end

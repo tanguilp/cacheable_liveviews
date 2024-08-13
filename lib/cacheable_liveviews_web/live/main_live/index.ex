@@ -13,6 +13,9 @@ defmodule CacheableLiveviewsWeb.MainLive.Index do
       |> assign(:nb_items_in_cart, nil)
       |> assign(:nb_notifications, nil)
       |> assign(:user_id, nil)
+      |> assign_async(:nb_total_products, fn ->
+        {:ok, %{nb_total_products: Product.count_products()}}
+      end)
 
     if not connected?(socket) do
       socket
@@ -42,20 +45,32 @@ defmodule CacheableLiveviewsWeb.MainLive.Index do
   end
 
   defp live_mount(socket, session) do
-    Process.send_after(self(), :change_price_live, 2_000)
+    Process.send_after(self(), :change_price_live, 4_000)
 
-    {:ok, user_assign(socket, session)}
+    if authenticated?(session) do
+      live_mount_authenticated(socket, session)
+    else
+      live_mount_anonymous(socket)
+    end
   end
 
-  defp user_assign(socket, %{"user_id" => user_id}) do
+  defp live_mount_authenticated(socket, session) do
     # User is logged in
-    socket
-    |> assign(:user_id, user_id)
-    |> assign(:nb_items_in_cart, User.items_in_cart(user_id) |> length())
-    |> assign(:nb_notifications, User.list_notifications(user_id) |> length())
+    user_id = session["user_id"]
+
+    socket =
+      socket
+      |> assign(:user_id, user_id)
+      |> assign(:nb_items_in_cart, User.items_in_cart(user_id) |> length())
+      |> assign(:nb_notifications, User.list_notifications(user_id) |> length())
+
+    {:ok, socket}
   end
 
-  defp user_assign(socket, _) do
-    socket
+  defp live_mount_anonymous(socket) do
+    {:ok, socket}
   end
+
+  defp authenticated?(%{"user_id" => _}), do: true
+  defp authenticated?(_), do: false
 end
