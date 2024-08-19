@@ -54,6 +54,8 @@ defmodule CacheableLiveviewsWeb do
       use Phoenix.LiveView,
         layout: {CacheableLiveviewsWeb.Layouts, :app}
 
+      import CacheableLiveviewsWeb.LiveHelpers
+
       unquote(html_helpers())
     end
   end
