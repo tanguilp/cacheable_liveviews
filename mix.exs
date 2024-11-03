@@ -32,11 +32,10 @@ defmodule CacheableLiveviews.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix,
-       github: "tanguilp/phoenix", branch: "feat-socket-optionnal-csrf-check", override: true},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
+      {:phoenix, github: "phoenixframework/phoenix", override: true},
       {:phoenix_html, "~> 3.3"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.20"},
